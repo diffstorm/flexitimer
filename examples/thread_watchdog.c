@@ -40,7 +40,7 @@ void thread_work(int id)
 
         if(remaining_time < WATCHDOG_TIMEOUT)
         {
-            if(SCHEDULER_OK == flexitimer_delay(id, WATCHDOG_TIMEOUT))
+            if(FLEXITIMER_OK == flexitimer_delay(id, WATCHDOG_TIMEOUT))
             {
                 printf("Delayed thread %d.\n", id);
             }
