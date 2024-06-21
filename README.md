@@ -117,7 +117,7 @@ Initializes the scheduler by resetting all timers.
 ### Starting a Timer
 
 ```c
-flexitimer_error_t flexitimer_start(int id, TimerType type, uint32_t timeout, TimerCallback callback);
+flexitimer_error_t flexitimer_start(timer_id_t id, TimerType type, uint32_t timeout, TimerCallback callback);
 ```
 Starts a timer with the specified id, type, timeout, and callback.
 
@@ -131,63 +131,63 @@ The scheduler handler that should be called periodically to manage timers.
 ### Postponing/Delaying a Timer
 
 ```c
-flexitimer_error_t flexitimer_delay(int id, timer_time_t delay);
+flexitimer_error_t flexitimer_delay(timer_id_t id, timer_time_t delay);
 ```
 Postpones / delays the timer with the specified id.
 
 ### Pausing a Timer
 
 ```c
-flexitimer_error_t flexitimer_pause(int id);
+flexitimer_error_t flexitimer_pause(timer_id_t id);
 ```
 Pauses the timer with the specified id.
 
 ### Resuming a Timer
 
 ```c
-flexitimer_error_t flexitimer_resume(int id);
+flexitimer_error_t flexitimer_resume(timer_id_t id);
 ```
 Resumes the paused timer with the specified id.
 
 ### Restarting a Timer
 
 ```c
-flexitimer_error_t flexitimer_restart(int id);
+flexitimer_error_t flexitimer_restart(timer_id_t id);
 ```
 Restarts the timer with the specified id.
 
 ### Cancelling a Timer
 
 ```c
-flexitimer_error_t flexitimer_cancel(int id);
+flexitimer_error_t flexitimer_cancel(timer_id_t id);
 ```
 Cancels the timer with the specified id.
 
 ### Getting Timer State
 
 ```c
-flexitimer_error_t flexitimer_get_state(int id, timer_state_t *state);
+flexitimer_error_t flexitimer_get_state(timer_id_t id, timer_state_t *state);
 ```
 Gets the state of the timer with the specified id.
 
 ### Getting Timer Type
 
 ```c
-flexitimer_error_t flexitimer_get_type(int id, timer_type_t *type);
+flexitimer_error_t flexitimer_get_type(timer_id_t id, timer_type_t *type);
 ```
 Gets the type of the timer with the specified id.
 
 ### Getting Original Timeout
 
 ```c
-flexitimer_error_t flexitimer_get_time(int id, timer_time_t *time);
+flexitimer_error_t flexitimer_get_time(timer_id_t id, timer_time_t *time);
 ```
 Gets the original timeout value of the timer with the specified id.
 
 ### Getting Remaining Time
 
 ```c
-flexitimer_error_t flexitimer_get_elapsed(int id, timer_time_t *time);
+flexitimer_error_t flexitimer_get_elapsed(timer_id_t id, timer_time_t *time);
 ```
 Gets the remaining time of the timer with the specified id.
 
