@@ -53,7 +53,17 @@ A fast and efficient software timer library designed to work seamlessly across a
 Include the library header in your project:
 
 ```c
+#define FLEXITIMER_MAX_TIMERS (50) // Optional
 #include "flexitimer.h"
+```
+
+Define the callback function(s) by using the same function signature as `timer_callback_t`
+
+```c
+void callback(timer_id_t i)
+{
+    // code
+}
 ```
 
 Initialize the scheduler in your main function:
@@ -117,9 +127,20 @@ Initializes the scheduler by resetting all timers.
 ### Starting a Timer
 
 ```c
-flexitimer_error_t flexitimer_start(timer_id_t id, TimerType type, uint32_t timeout, TimerCallback callback);
+flexitimer_error_t flexitimer_start(timer_id_t id, timer_type_t type, timer_time_t timeout, timer_callback_t callback);
 ```
 Starts a timer with the specified id, type, timeout, and callback.
+
+Example Callback function
+
+```c
+void timer_callback_1(timer_id_t i)
+{
+    printf("Timer %d expired!\n", i);
+}
+...
+flexitimer_start(0, TIMER_TYPE_SINGLESHOT, 5000, timer_callback_1);
+```
 
 ### Handler Function
 
@@ -190,6 +211,33 @@ Gets the original timeout value of the timer with the specified id.
 flexitimer_error_t flexitimer_get_elapsed(timer_id_t id, timer_time_t *time);
 ```
 Gets the remaining time of the timer with the specified id.
+
+## Best Practices / Tips
+- Update configuration values and types in the `flexitimer.h` header to match specific needs. Adjust `FLEXITIMER_MAX_TIMERS` to support more timers along with the `timer_id_t` if required, and modify the type of `timer_time_t` for saving memory in environments with limited resources:
+```c
+/**
+    @brief Number of timers
+*/
+#define FLEXITIMER_MAX_TIMERS (20) // Example for increasing the number of timers
+
+/**
+    @brief Id unit type
+*/
+typedef uint16_t timer_id_t; // Example for larger ID range
+
+/**
+    @brief Time unit type
+*/
+typedef uint16_t timer_time_t; // Example for smaller time unit to save memory
+```
+- Ensure callback functions are non-blocking and consist of minimal, efficient code to prevent delays in the scheduler execution.
+- Use an enum to list timer IDs in a single place for easier management and readability.
+- Utilize getter functions to control the flow and monitor timer states effectively.
+- Always check the return values of library functions to handle errors appropriately.
+- Avoid using the same callback function for both periodic and single-shot timers to prevent unexpected behavior.
+- Use mutexes or other synchronization mechanisms if timers interact with shared resources in a multi-threaded environment.
+- Implement robust error handling and logging within callback functions to identify and troubleshoot issues quickly.
+- Consider using the Proxy design pattern to test callbacks. By using a proxy, you can intercept calls to the real callback functions, allowing you to simulate different conditions, measure execution times, and verify that the scheduler behaves correctly without modifying the actual callback logic.
 
 ## :snowman: Author
 
