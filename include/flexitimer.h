@@ -25,7 +25,7 @@ extern "C" {
 #include <stdint.h>
 
 /**
-    @brief Number of times
+    @brief Number of timers
 */
 #ifndef FLEXITIMER_MAX_TIMERS
 #define FLEXITIMER_MAX_TIMERS (10)
