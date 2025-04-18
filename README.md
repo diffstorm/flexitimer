@@ -3,6 +3,7 @@
 [![Build Status](https://github.com/diffstorm/flexitimer/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/diffstorm/flexitimer/actions)
 [![License](https://img.shields.io/github/license/diffstorm/flexitimer)](https://github.com/diffstorm/flexitimer/blob/main/LICENSE)
 [![Language](https://img.shields.io/github/languages/top/diffstorm/flexitimer)](https://github.com/diffstorm/flexitimer)
+[![Code Coverage](https://codecov.io/gh/diffstorm/flexitimer/branch/main/graph/badge.svg)](https://codecov.io/gh/diffstorm/flexitimer)
 ![GitHub Stars](https://img.shields.io/github/stars/diffstorm/flexitimer?style=social)
 ![Platforms](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey)
 
