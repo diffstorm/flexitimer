@@ -1,17 +1,20 @@
-# FlexiTimer Scheduler Library
+# FlexiTimer Scheduler Library [![Awesome](https://awesome.re/badge.svg)](https://github.com/diffstorm/flexitimer)
 
 [![Build Status](https://github.com/diffstorm/flexitimer/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/diffstorm/flexitimer/actions)
 [![License](https://img.shields.io/github/license/diffstorm/flexitimer)](https://github.com/diffstorm/flexitimer/blob/main/LICENSE)
 [![Language](https://img.shields.io/github/languages/top/diffstorm/flexitimer)](https://github.com/diffstorm/flexitimer)
+![GitHub Stars](https://img.shields.io/github/stars/diffstorm/flexitimer?style=social)
+![Platforms](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey)
 
-A fast and efficient software timer library designed to work seamlessly across any embedded system, operating system, or bare-metal environment. With MISRA C compliance, it ensures safety and reliability, making it ideal for real-time applications. The timer resolution is flexible and depends on the frequency of the handler function calls, providing high precision for various use cases.
+A fast and efficient software timer library designed to work seamlessly across any embedded system, operating system, or bare-metal environment. With full test coverage and MISRA C compliance, it ensures safety and reliability, making it ideal for real-time applications. The timer resolution is flexible and depends on the frequency of handler function calls, providing high precision for diverse use cases.
 
 ## Features
 
-- **Lightweight and Fast**: Optimized for minimal resource usage.
-- **Platform Independent**: Can be used in any embedded system, OS, or bare-metal system.
+- **Lightweight & Fast**: Optimized for minimal resource usage.
+- **Platform-Independent**: Compatible with embedded systems, operating systems, and bare-metal environments.
+- **MISRA-Compliant**: Follows MISRA C guidelines for safety and reliability.
 - **Flexible Timer Resolution**: The resolution of the software timers depends on the calling frequency of the handler function.
-- **MISRA Compliant**: Follows MISRA C guidelines for safety and reliability.
+- **Industry-Proven**: Deployed in diverse industrial applications and rigorously unit-tested.
 
 ## Getting Started
 
@@ -46,6 +49,12 @@ A fast and efficient software timer library designed to work seamlessly across a
 
     ```bash
     make
+    ```
+
+5. **Run the unit tests:**
+
+    ```bash
+    ./test/flexitimerTest
     ```
 
 ### Library Usage
