@@ -27,9 +27,7 @@ extern "C" {
 /**
     @brief Number of timers
 */
-#ifndef FLEXITIMER_MAX_TIMERS
-#define FLEXITIMER_MAX_TIMERS (10)
-#endif
+
 
 /**
     @brief Id unit type

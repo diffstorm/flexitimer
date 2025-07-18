@@ -185,7 +185,7 @@ Resumes the paused timer with the specified id.
 ```c
 flexitimer_error_t flexitimer_restart(timer_id_t id);
 ```
-Restarts the timer with the specified id.
+Restarts the timer with the specified id. Can now also re-activate expired single-shot timers if they have a valid callback.
 
 ### Cancelling a Timer
 
@@ -223,23 +223,11 @@ flexitimer_error_t flexitimer_get_elapsed(timer_id_t id, timer_time_t *time);
 Gets the remaining time of the timer with the specified id.
 
 ## Best Practices / Tips
-- Update configuration values and types in the `flexitimer.h` header to match specific needs. Adjust `FLEXITIMER_MAX_TIMERS` to support more timers along with the `timer_id_t` if required, and modify the type of `timer_time_t` for saving memory in environments with limited resources:
-```c
-/**
-    @brief Number of timers
-*/
-#define FLEXITIMER_MAX_TIMERS (20) // Example for increasing the number of timers
-
-/**
-    @brief Id unit type
-*/
-typedef uint16_t timer_id_t; // Example for larger ID range
-
-/**
-    @brief Time unit type
-*/
-typedef uint16_t timer_time_t; // Example for smaller time unit to save memory
+- Configure `FLEXITIMER_MAX_TIMERS` via CMake: The maximum number of timers can be set during the CMake configuration step. This allows you to adjust the library's capacity without modifying source files.
+```bash
+cmake -DFLEXITIMER_MAX_TIMERS=50 ..
 ```
+  You can also adjust `timer_id_t` and `timer_time_t` in `flexitimer.h` to match specific needs and save memory in resource-constrained environments.
 - Ensure callback functions are non-blocking and consist of minimal, efficient code to prevent delays in the scheduler execution.
 - Use an enum to list timer IDs in a single place for easier management and readability.
 - Utilize getter functions to control the flow and monitor timer states effectively.

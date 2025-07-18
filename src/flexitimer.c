@@ -153,7 +153,7 @@ flexitimer_error_t flexitimer_restart(timer_id_t id)
         return FLEXITIMER_ERROR_INVALID_ID;
     }
 
-    if(timers[id].state != TIMER_STATE_PASSIVE)
+    if(timers[id].callback != NULL)
     {
         timers[id].remaining = timers[id].timeout;
         timers[id].state = TIMER_STATE_ACTIVE;

@@ -94,7 +94,7 @@ TEST_F(FlexiTimerTest, PauseResumeTimer)
 
 TEST_F(FlexiTimerTest, RestartTimer)
 {
-    flexitimer_start(0, TIMER_TYPE_SINGLESHOT, 2, nullptr);
+    flexitimer_start(0, TIMER_TYPE_SINGLESHOT, 2, test_callback);
     flexitimer_handler(); // remaining=1
     EXPECT_EQ(flexitimer_restart(0), FLEXITIMER_OK);
     timer_time_t remaining;
@@ -132,4 +132,24 @@ TEST_F(FlexiTimerTest, MultipleTimersIndependent)
     flexitimer_handler(); // Timer 1 decrements to 1
     flexitimer_handler(); // Timer 1 triggers, count=3
     EXPECT_EQ(callback_count, 3);
+}
+
+TEST_F(FlexiTimerTest, RestartPassiveSingleShotTimer)
+{
+    flexitimer_start(0, TIMER_TYPE_SINGLESHOT, 1, test_callback);
+    flexitimer_handler(); // Timer expires
+    EXPECT_EQ(callback_count, 1);
+    timer_state_t state;
+    flexitimer_get_state(0, &state);
+    EXPECT_EQ(state, TIMER_STATE_PASSIVE);
+
+    EXPECT_EQ(flexitimer_restart(0), FLEXITIMER_OK);
+    flexitimer_get_state(0, &state);
+    EXPECT_EQ(state, TIMER_STATE_ACTIVE);
+    timer_time_t remaining;
+    flexitimer_get_elapsed(0, &remaining);
+    EXPECT_EQ(remaining, 1); // Should be reset to original timeout
+
+    flexitimer_handler(); // Should trigger callback again
+    EXPECT_EQ(callback_count, 2);
 }
